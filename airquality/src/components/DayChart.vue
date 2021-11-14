@@ -8,7 +8,7 @@
               <th>PM10</th>
           </tr>
         </thead>
-        <tr  v-for="(item, index) in measurements" :key="index">
+        <tr :class="item.pM25 > 35 ? 'yellow' : ''" v-for="(item, index) in measurements" :key="index">
            <td> {{ new Date(item.timestamp).toLocaleString('pl-PL', { timeZone: 'Europe/Warsaw' }) }}</td>
            <td> {{ item.pM25 }}</td>
            <td> {{ item.pM10 }}</td>
@@ -35,6 +35,14 @@ export default defineComponent({
     props: { 
             measurements: {},
             options: {}
+    },
+    computed: {
+    classObject: function () {
+        return {
+            active: this.isActive && !this.error,
+            'text-danger': this.error && this.error.type === 'fatal'
+        }
+    }
     },
   mounted() {
     // this.fillData()

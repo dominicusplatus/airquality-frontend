@@ -42,7 +42,7 @@ namespace AirQuality
                     TableQuery.GenerateFilterConditionForDate(
                         "Timestamp", 
                         QueryComparisons.GreaterThanOrEqual, 
-                       DateTimeOffset.UtcNow.AddHours(-12))
+                       DateTimeOffset.UtcNow.AddHours(-24))
                     )
                 );
             rangeQuery.TakeCount = 144;
